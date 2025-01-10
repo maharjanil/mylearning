@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Learning Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Background and Font Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa; /* Soft light background */
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container-fluid {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        /* Video List Style */
+        .video-list {
+            height: 80vh;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Link Styling */
+        .video-list a {
+            display: block;
+            padding: 12px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: #333;
+            background-color: #f1f3f5;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-list a:hover {
+            background-color: #007bff;
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-list a.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Video Player Style (Fixed size) */
+        .video-player {
+            width: 800px;  /* Fixed width */
+            height: 450px; /* Fixed height */
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container {
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Layout Flex Styling */
+        .video-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .left-column, .right-column {
+            padding: 20px;
+        }
+
+        .left-column {
+            width: 100%;
+            background-color: #ffffff;
+        }
+
+        @media (min-width: 992px) {
+            .left-column {
+                width: 30%;
+            }
+
+            .right-column {
+                width: 65%;
+            }
+        }
+
+        /* Card Animation */
+        .video-list a.active, .video-list a:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Content Centering */
+        .video-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Sub-list Styling */
+        .sub-list {
+            padding-left: 20px;
+            display: none; /* Hidden by default */
+        }
+
+        .sub-list a {
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row video-section">
+        <!-- Left column for video links -->
+        <div class="col-12 col-md-4 left-column">
+            <div class="video-list">
+                <h3 class="text-center">Video List</h3>
+                <a href="#" onclick="toggleSubList('html')" id="link-html">Introduction to HTML</a>
+                <div id="sub-list-html" class="sub-list">
+                    <a href="#" onclick="loadVideo('html1')" id="link-html1">HTML Structure</a>
+                    <a href="#" onclick="loadVideo('html2')" id="link-html2">HTML Elements</a>
+                </div>
+
+                <a href="#" onclick="toggleSubList('css')" id="link-css">CSS Basics</a>
+                <div id="sub-list-css" class="sub-list">
+                    <a href="#" onclick="loadVideo('css1')" id="link-css1">CSS Selectors</a>
+                    <a href="#" onclick="loadVideo('css2')" id="link-css2">CSS Box Model</a>
+                </div>
+
+                <a href="#" onclick="toggleSubList('js')" id="link-js">JavaScript Fundamentals</a>
+                <div id="sub-list-js" class="sub-list">
+                    <a href="#" onclick="loadVideo('js1')" id="link-js1">JavaScript Basics</a>
+                    <a href="#" onclick="loadVideo('js2')" id="link-js2">JavaScript Functions</a>
+                </div>
+
+                <a href="#" onclick="toggleSubList('bootstrap')" id="link-bootstrap">Bootstrap Framework</a>
+                <div id="sub-list-bootstrap" class="sub-list">
+                    <a href="#" onclick="loadVideo('bootstrap1')" id="link-bootstrap1">Bootstrap Grid</a>
+                    <a href="#" onclick="loadVideo('bootstrap2')" id="link-bootstrap2">Bootstrap Components</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right column for video player -->
+        <div class="col-12 col-md-8 right-column">
+            <div>
+                <h3 class="video-title" id="video-title">Select a video to play</h3>
+                <div class="video-container">
+                    <iframe id="video-player" class="video-player" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Function to load video based on the clicked link
+    function loadVideo(videoId) {
+        var videoURL;
+        var videoTitle;
+
+        // Set video URL and title based on videoId
+        switch (videoId) {
+            case 'html1':
+                videoURL = 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Example YouTube video URL
+                videoTitle = 'HTML Structure';
+                break;
+            case 'html2':
+                videoURL = 'https://www.youtube.com/embed/UB1O30fR-EE'; // Example YouTube video URL
+                videoTitle = 'HTML Elements';
+                break;
+            case 'css1':
+                videoURL = 'https://www.youtube.com/embed/W6NZfCO5SIk'; // Example YouTube video URL
+                videoTitle = 'CSS Selectors';
+                break;
+            case 'css2':
+                videoURL = 'https://www.youtube.com/embed/gpH2c8H1c6M'; // Example YouTube video URL
+                videoTitle = 'CSS Box Model';
+                break;
+            case 'js1':
+                videoURL = 'https://www.youtube.com/embed/XBho39eGVYY'; // Example YouTube video URL
+                videoTitle = 'JavaScript Basics';
+                break;
+            case 'js2':
+                videoURL = 'https://www.youtube.com/embed/dJ3DtcV14mI'; // Example YouTube video URL
+                videoTitle = 'JavaScript Functions';
+                break;
+            case 'bootstrap1':
+                videoURL = 'https://www.youtube.com/embed/gpH2c8H1c6M'; // Example YouTube video URL
+                videoTitle = 'Bootstrap Grid';
+                break;
+            case 'bootstrap2':
+                videoURL = 'https://www.youtube.com/embed/XBho39eGVYY'; // Example YouTube video URL
+                videoTitle = 'Bootstrap Components';
+                break;
+            default:
+                videoURL = '';
+                videoTitle = 'Select a video to play';
+        }
+
+        // Set the video source and title
+        document.getElementById('video-player').src = videoURL;
+        document.getElementById('video-title').innerText = videoTitle;
+
+        // Add active class to the clicked link
+        var links = document.querySelectorAll('.video-list a');
+        links.forEach(function(link) {
+            link.classList.remove('active');
+        });
+        document.getElementById('link-' + videoId).classList.add('active');
+    }
+
+    // Function to toggle sub-list visibility
+    function toggleSubList(videoCategory) {
+        var subList = document.getElementById('sub-list-' + videoCategory);
+        if (subList.style.display === 'block') {
+            subList.style.display = 'none';
+        } else {
+            subList.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
