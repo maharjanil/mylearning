@@ -1,254 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Learning Page</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        /* Background and Font Styling */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa; /* Soft light background */
-            color: #333;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Page</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container-fluid {
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
+    .sidebar {
+      background-color: #ffffff;
+      color: #333;
+      min-height: 100vh;
+      padding: 30px 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    }
 
-        /* Video List Style */
-        .video-list {
-            height: 80vh;
-            overflow-y: auto;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
+    .sidebar h3 {
+      font-weight: 600;
+      margin-bottom: 30px;
+      font-size: 24px;
+      color: #111827;
+      cursor: pointer;
+    }
 
-        /* Link Styling */
-        .video-list a {
-            display: block;
-            padding: 12px;
-            margin-bottom: 12px;
-            text-decoration: none;
-            color: #333;
-            background-color: #f1f3f5;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    .lesson-card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        .video-list a:hover {
-            background-color: #007bff;
-            color: white;
-            transform: translateX(5px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-        }
+    .lesson-card:hover {
+      background-color: #f9fafb;
+      border-color: #d1d5db;
+    }
 
-        .video-list a.active {
-            background-color: #007bff;
-            color: white;
-        }
+    .lesson-card h5 {
+      font-weight: 500;
+      margin: 0;
+      font-size: 16px;
+      color: #111827;
+    }
 
-        /* Video Player Style (Fixed size) */
-        .video-player {
-            width: 800px;  /* Fixed width */
-            height: 450px; /* Fixed height */
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    .sub-lesson {
+      margin-left: 20px;
+      margin-top: 10px;
+      display: none;
+    }
 
-        .video-container {
-            margin-top: 20px;
-        }
+    .sub-lesson .lesson-card {
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      margin-bottom: 5px;
+    }
 
-        h3 {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 20px;
-        }
+    .sub-lesson .lesson-card:hover {
+      background-color: #f3f4f6;
+    }
 
-        .video-title {
-            font-size: 1.5rem;
-            color: #555;
-            margin-bottom: 10px;
-        }
+    .content-area {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      margin: 20px;
+    }
 
-        /* Layout Flex Styling */
-        .video-section {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
+    .content-area h3 {
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
 
-        .left-column, .right-column {
-            padding: 20px;
-        }
+    iframe, video {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
 
-        .left-column {
-            width: 100%;
-            background-color: #ffffff;
-        }
+    .welcome-message {
+      text-align: center;
+      padding: 50px;
+      color: #111827;
+    }
 
-        @media (min-width: 992px) {
-            .left-column {
-                width: 30%;
-            }
+    .welcome-message h3 {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
 
-            .right-column {
-                width: 65%;
-            }
-        }
+    .welcome-message p {
+      font-size: 18px;
+      color: #6b7280;
+    }
 
-        /* Card Animation */
-        .video-list a.active, .video-list a:hover {
-            transform: translateY(-4px);
-        }
+    .notes-section {
+      margin-top: 30px;
+    }
 
-        /* Content Centering */
-        .video-section {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .notes-section textarea {
+      width: 100%;
+      height: 150px;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      resize: vertical;
+      margin-bottom: 10px;
+      background-color: #f9fafb;
+    }
 
-        /* Sub-list Styling */
-        .sub-list {
-            padding-left: 20px;
-            display: none; /* Hidden by default */
-        }
+    .notes-section button {
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+    }
 
-        .sub-list a {
-            font-size: 16px;
-            color: #666;
-        }
-    </style>
+    .notes-section button:hover {
+      background-color: #374151;
+    }
+
+    .saved-notes {
+      margin-top: 20px;
+      background-color: #f9fafb;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .saved-notes h4 {
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .saved-notes p {
+      font-size: 14px;
+      color: #4b5563;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
-
-<div class="container-fluid">
-    <div class="row video-section">
-        <!-- Left column for video links -->
-        <div class="col-12 col-md-4 left-column">
-            <div class="video-list">
-                <h3 class="text-center">Video List</h3>
-                <a href="#" onclick="toggleSubList('html')" id="link-html">Introduction to HTML</a>
-                <div id="sub-list-html" class="sub-list">
-                    <a href="#" onclick="loadVideo('html1')" id="link-html1">HTML Structure</a>
-                    <a href="#" onclick="loadVideo('html2')" id="link-html2">HTML Elements</a>
-                </div>
-
-                <a href="#" onclick="toggleSubList('css')" id="link-css">CSS Basics</a>
-                <div id="sub-list-css" class="sub-list">
-                    <a href="#" onclick="loadVideo('css1')" id="link-css1">CSS Selectors</a>
-                    <a href="#" onclick="loadVideo('css2')" id="link-css2">CSS Box Model</a>
-                </div>
-
-                <a href="#" onclick="toggleSubList('js')" id="link-js">JavaScript Fundamentals</a>
-                <div id="sub-list-js" class="sub-list">
-                    <a href="#" onclick="loadVideo('js1')" id="link-js1">JavaScript Basics</a>
-                    <a href="#" onclick="loadVideo('js2')" id="link-js2">JavaScript Functions</a>
-                </div>
-
-                <a href="#" onclick="toggleSubList('bootstrap')" id="link-bootstrap">Bootstrap Framework</a>
-                <div id="sub-list-bootstrap" class="sub-list">
-                    <a href="#" onclick="loadVideo('bootstrap1')" id="link-bootstrap1">Bootstrap Grid</a>
-                    <a href="#" onclick="loadVideo('bootstrap2')" id="link-bootstrap2">Bootstrap Components</a>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Left Side: Sidebar -->
+      <div class="col-md-3 sidebar">
+        <h3 id="lessons-heading">Lessons</h3>
+        <hr>
+        <!-- Lesson 1 -->
+        <div class="lesson-card" onclick="toggleSubList('sublist1')">
+          <h5>Lesson 1: Mobile App Development</h5>
+        </div>
+        <!-- Sub-Lessons for Lesson 1 -->
+        <div id="sublist1" class="sub-lesson">
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/dQw4w9WgXcQ">
+            <h5>1.1: Introduction to Dart Flutter</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/VIDEO_ID_2">
+            <h5>1.2: Getting Started</h5>
+          </div>
         </div>
 
-        <!-- Right column for video player -->
-        <div class="col-12 col-md-8 right-column">
-            <div>
-                <h3 class="video-title" id="video-title">Select a video to play</h3>
-                <div class="video-container">
-                    <iframe id="video-player" class="video-player" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
+        <!-- Lesson 2 -->
+        <div class="lesson-card" onclick="toggleSubList('sublist2')">
+          <h5>Lesson 2: Basics</h5>
         </div>
+        <!-- Sub-Lessons for Lesson 2 -->
+        <div id="sublist2" class="sub-lesson">
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/VIDEO_ID_3">
+            <h5>2.1: Fundamentals</h5>
+          </div>
+          <div class="lesson-card" data-content="document" data-url="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf">
+            <h5>2.2: Practice Exercises</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Content Area -->
+      <div class="col-md-9 p-4">
+        <div class="content-area" id="content-display">
+          <div class="welcome-message">
+            <h3>Welcome to the Learning Page!</h3>
+            <p>Click on a lesson to start learning.</p>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap 5 JS and Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Function to toggle sub-lessons
+    function toggleSubList(id) {
+      const subList = document.getElementById(id);
+      if (subList.style.display === "block") {
+        subList.style.display = "none";
+      } else {
+        subList.style.display = "block";
+      }
+    }
 
-<script>
-    // Function to load video based on the clicked link
-    function loadVideo(videoId) {
-        var videoURL;
-        var videoTitle;
+    // Function to reset the content area to the welcome message
+    function resetContent() {
+      const contentDisplay = document.getElementById("content-display");
+      contentDisplay.innerHTML = `
+        <div class="welcome-message">
+          <h3>Welcome to the Learning Page!</h3>
+          <p>Click on a lesson to start learning.</p>
+        </div>
+      `;
+    }
 
-        // Set video URL and title based on videoId
-        switch (videoId) {
-            case 'html1':
-                videoURL = 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Example YouTube video URL
-                videoTitle = 'HTML Structure';
-                break;
-            case 'html2':
-                videoURL = 'https://www.youtube.com/embed/UB1O30fR-EE'; // Example YouTube video URL
-                videoTitle = 'HTML Elements';
-                break;
-            case 'css1':
-                videoURL = 'https://www.youtube.com/embed/W6NZfCO5SIk'; // Example YouTube video URL
-                videoTitle = 'CSS Selectors';
-                break;
-            case 'css2':
-                videoURL = 'https://www.youtube.com/embed/gpH2c8H1c6M'; // Example YouTube video URL
-                videoTitle = 'CSS Box Model';
-                break;
-            case 'js1':
-                videoURL = 'https://www.youtube.com/embed/XBho39eGVYY'; // Example YouTube video URL
-                videoTitle = 'JavaScript Basics';
-                break;
-            case 'js2':
-                videoURL = 'https://www.youtube.com/embed/dJ3DtcV14mI'; // Example YouTube video URL
-                videoTitle = 'JavaScript Functions';
-                break;
-            case 'bootstrap1':
-                videoURL = 'https://www.youtube.com/embed/gpH2c8H1c6M'; // Example YouTube video URL
-                videoTitle = 'Bootstrap Grid';
-                break;
-            case 'bootstrap2':
-                videoURL = 'https://www.youtube.com/embed/XBho39eGVYY'; // Example YouTube video URL
-                videoTitle = 'Bootstrap Components';
-                break;
-            default:
-                videoURL = '';
-                videoTitle = 'Select a video to play';
-        }
+    // Add event listener to the "Lessons" heading
+    document.getElementById("lessons-heading").addEventListener("click", resetContent);
 
-        // Set the video source and title
-        document.getElementById('video-player').src = videoURL;
-        document.getElementById('video-title').innerText = videoTitle;
+    // Function to handle content display
+    document.addEventListener("DOMContentLoaded", function () {
+      const contentDisplay = document.getElementById("content-display");
+      const lessonCards = document.querySelectorAll(".lesson-card[data-content]");
 
-        // Add active class to the clicked link
-        var links = document.querySelectorAll('.video-list a');
-        links.forEach(function(link) {
-            link.classList.remove('active');
+      lessonCards.forEach((card) => {
+        card.addEventListener("click", function () {
+          const contentType = this.getAttribute("data-content");
+          const contentUrl = this.getAttribute("data-url");
+          const lessonTitle = this.querySelector("h5").textContent;
+
+          // Clear the content display area
+          contentDisplay.innerHTML = "";
+
+          // Display content based on the clicked item
+          if (contentType === "video" || contentType === "document") {
+            contentDisplay.innerHTML = `
+              <h3>${lessonTitle}</h3>
+              <iframe src="${contentUrl}" allowfullscreen></iframe>
+              <div class="notes-section">
+                <textarea id="notes-input" placeholder="Write your notes here..."></textarea>
+                <button onclick="saveNotes('${lessonTitle}')">Save Notes</button>
+                <button onclick="clearNotes('${lessonTitle}')">Clear Notes</button>
+                <div class="saved-notes">
+                  <h4>Saved Notes:</h4>
+                  <p id="saved-notes-display">${localStorage.getItem(lessonTitle) || "No notes saved yet."}</p>
+                </div>
+              </div>
+            `;
+          }
         });
-        document.getElementById('link-' + videoId).classList.add('active');
+      });
+    });
+
+    // Function to save notes to local storage
+    function saveNotes(lessonTitle) {
+      const notesInput = document.getElementById("notes-input").value;
+      const savedNotes = localStorage.getItem(lessonTitle) || ""; // Get existing notes
+      const updatedNotes = savedNotes + (savedNotes ? "\n\n" : "") + notesInput; // Append new notes
+      localStorage.setItem(lessonTitle, updatedNotes.trim()); // Save updated notes
+      document.getElementById("saved-notes-display").textContent = updatedNotes.trim(); // Update displayed notes
     }
 
-    // Function to toggle sub-list visibility
-    function toggleSubList(videoCategory) {
-        var subList = document.getElementById('sub-list-' + videoCategory);
-        if (subList.style.display === 'block') {
-            subList.style.display = 'none';
-        } else {
-            subList.style.display = 'block';
-        }
+    // Function to clear notes
+    function clearNotes(lessonTitle) {
+      localStorage.removeItem(lessonTitle); // Remove notes from local storage
+      document.getElementById("saved-notes-display").textContent = "No notes saved yet."; // Reset displayed notes
     }
-</script>
-
+  </script>
 </body>
 </html>
