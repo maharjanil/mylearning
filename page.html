@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Page</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .sidebar {
+      background-color: #ffffff;
+      color: #333;
+      min-height: 100vh;
+      padding: 30px 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode .sidebar {
+      background-color: #2d2d2d;
+      color: #ffffff;
+    }
+
+    .sidebar h3 {
+      font-weight: 600;
+      margin-bottom: 30px;
+      font-size: 24px;
+      color: #111827;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .sidebar h3 {
+      color: #ffffff;
+    }
+
+    .lesson-card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode .lesson-card {
+      background-color: #3d3d3d;
+      border-color: #555;
+      color: #ffffff;
+    }
+
+    .lesson-card:hover {
+      background-color: #f9fafb;
+      border-color: #d1d5db;
+    }
+
+    body.dark-mode .lesson-card:hover {
+      background-color: #4d4d4d;
+    }
+
+    .lesson-card h5 {
+      font-weight: 500;
+      margin: 0;
+      font-size: 16px;
+      color: #111827;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .lesson-card h5 {
+      color: #ffffff;
+    }
+
+    .sub-lesson {
+      margin-left: 20px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .sub-lesson .lesson-card {
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      margin-bottom: 5px;
+    }
+
+    body.dark-mode .sub-lesson .lesson-card {
+      background-color: #4d4d4d;
+      border-color: #555;
+    }
+
+    .sub-lesson .lesson-card:hover {
+      background-color: #f3f4f6;
+    }
+
+    body.dark-mode .sub-lesson .lesson-card:hover {
+      background-color: #5d5d5d;
+    }
+
+    .content-area {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      margin: 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode .content-area {
+      background-color: #3d3d3d;
+      color: #ffffff;
+    }
+
+    .content-area h3 {
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 20px;
+      font-size: 28px;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .content-area h3 {
+      color: #ffffff;
+    }
+
+    iframe, video {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .welcome-message {
+      text-align: center;
+      padding: 50px;
+      color: #111827;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .welcome-message {
+      color: #ffffff;
+    }
+
+    .welcome-message h3 {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    .welcome-message p {
+      font-size: 18px;
+      color: #6b7280;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .welcome-message p {
+      color: #a0a0a0;
+    }
+
+    .notes-section {
+      margin-top: 30px;
+    }
+
+    .notes-section textarea {
+      width: 100%;
+      height: 150px;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      resize: vertical;
+      margin-bottom: 10px;
+      background-color: #f9fafb;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    body.dark-mode .notes-section textarea {
+      background-color: #4d4d4d;
+      color: #ffffff;
+      border-color: #555;
+    }
+
+    .notes-section button {
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+    }
+
+    body.dark-mode .notes-section button {
+      background-color: #374151;
+    }
+
+    .notes-section button:hover {
+      background-color: #374151;
+    }
+
+    body.dark-mode .notes-section button:hover {
+      background-color: #4d4d4d;
+    }
+
+    .saved-notes {
+      margin-top: 20px;
+      background-color: #f9fafb;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    body.dark-mode .saved-notes {
+      background-color: #4d4d4d;
+      border-color: #555;
+      color: #ffffff;
+    }
+
+    .saved-notes h4 {
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 10px;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .saved-notes h4 {
+      color: #ffffff;
+    }
+
+    .saved-notes p {
+      font-size: 14px;
+      color: #4b5563;
+      white-space: pre-wrap;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .saved-notes p {
+      color: #a0a0a0;
+    }
+
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .sidebar-toggle {
+      background-color: #374151;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: #374151;
+    }
+
+    body.dark-mode .sidebar-toggle:hover {
+      background-color: #4d4d4d;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        transition: left 0.3s;
+        z-index: 999;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .sidebar-toggle {
+        display: block;
+      }
+
+      .content-area {
+        margin-left: 0;
+      }
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    body.dark-mode .search-bar input {
+      background-color: #4d4d4d;
+      color: #ffffff;
+      border-color: #555;
+    }
+
+    .auth-section {
+      margin-bottom: 20px;
+    }
+
+    .auth-section button {
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+    }
+
+    body.dark-mode .auth-section button {
+      background-color: #374151;
+    }
+
+    .auth-section button:hover {
+      background-color: #374151;
+    }
+
+    body.dark-mode .auth-section button:hover {
+      background-color: #4d4d4d;
+    }
+
+    .progress-tracker {
+      margin-top: 20px;
+    }
+
+    .progress-tracker h4 {
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 10px;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .progress-tracker h4 {
+      color: #ffffff;
+    }
+
+    .progress-tracker ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .progress-tracker li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #4b5563;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .progress-tracker li {
+      color: #a0a0a0;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .dark-mode-toggle {
+      background-color: #374151;
+    }
+
+    .dark-mode-toggle:hover {
+      background-color: #374151;
+    }
+
+    body.dark-mode .dark-mode-toggle:hover {
+      background-color: #4d4d4d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+    <div class="row">
+      <!-- Left Side: Sidebar -->
+      <div class="col-md-3 sidebar" id="sidebar">
+        <h3 id="lessons-heading">Lessons</h3>
+        <hr>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search lessons..." oninput="filterLessons()">
+        </div>
+
+        <!-- Authentication Section -->
+        <div class="auth-section">
+          <button onclick="login()">Login</button>
+          <button onclick="logout()">Logout</button>
+        </div>
+
+        <!-- Lesson 1 -->
+        <div class="lesson-card" onclick="toggleSubList('sublist1')">
+          <h5>Lesson 1: Mobile App Development</h5>
+        </div>
+        <!-- Sub-Lessons for Lesson 1 -->
+        <div id="sublist1" class="sub-lesson">
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/XHQUgPSs9e4?si=huVpvVXwSAUdXQoB">
+            <h5>1.1: Introduction to Dart Flutter</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/akVctUggHgs?si=ap1K4KNXf0kcgHm6">
+            <h5>1.2: Basics of Dart Language</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/cqTJE_Mo1no?si=KMFBRu-FMCdx-FWZ">
+            <h5>1.3: Dart Language Offline Installation</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/TTcrlV6UVPY?si=yGnUGjueAg6629f_">
+            <h5>1.4: Flutter Framework</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/rUCntPoopQo?si=hvR10Qr7TeNJKhET">
+            <h5>1.5: Widgets in Flutter</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/bE7CgftuaPE?si=RjMISaN4yNwkkSyU">
+            <h5>1.6: Understanding Layouts in Flutter</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/bI83kJ1EXy8?si=4S3Iexy_RgFx0tn8">
+            <h5>1.7: Dynamic Routing in Flutter</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/7hQ_zTVORFU?si=8ZtTxBvUw4UW1MJK">
+            <h5>1.8: Inbuilt Libraries in Dart</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/ILK7bUha1fo?si=yYRpg9RFckrzJCs8">
+            <h5>1.9: Understanding Flutter Pub</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/vPEPnBaDC0c?si=zvSgtj17_fesp3wr">
+            <h5>1.10: Building a News App</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/DvNe7bUHQUU?si=7rxJ2nbIH-NrP0hd">
+            <h5>1.11: Publishing App On Playstore</h5>
+          </div>
+        </div>
+
+        <!-- Lesson 2 -->
+        <div class="lesson-card" onclick="toggleSubList('sublist2')">
+          <h5>Lesson 2: Flutter/Dart Course</h5>
+        </div>
+        <!-- Sub-Lessons for Lesson 2 -->
+        <div id="sublist2" class="sub-lesson">
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/DsTMhjaRQws?si=CInImrAkVksSLdmx">
+            <h5>2.1: Flutter Course for Absolute Beginners</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/F3JuuYuOUK4?si=l7cg18EI7LpHodMq">
+            <h5>2.2: Complete Dart Course</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/dFb9PYj63GA?si=rqOG5fAx8LaeNbM9">
+            <h5>2.3: Dart Programming Complete Tutorial In Nepali</h5>
+          </div>
+        </div>
+
+        <!-- Lesson 3 -->
+        <div class="lesson-card" onclick="toggleSubList('sublist3')">
+          <h5>Lesson 3: After Effects</h5>
+        </div>
+        <!-- Sub-Lessons for Lesson 3 -->
+        <div id="sublist3" class="sub-lesson">
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/DsTMhjaRQws?si=CInImrAkVksSLdmx">
+            <h5>3.1: Flutter Course for Absolute Beginners</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/F3JuuYuOUK4?si=l7cg18EI7LpHodMq">
+            <h5>3.2: Complete Dart Course</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/dFb9PYj63GA?si=rqOG5fAx8LaeNbM9">
+            <h5>3.3: Dart Programming Complete Tutorial In Nepali</h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/dFb9PYj63GA?si=rqOG5fAx8LaeNbM9">
+            <h5>3.4: Dart Programming Complete Tutorial In Nepali</h5>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Content Area -->
+      <div class="col-md-9 p-4">
+        <div class="content-area" id="content-display">
+          <div class="welcome-message">
+            <h3>Welcome to the Learning Page!</h3>
+            <p>Click on a lesson to start learning.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dark Mode Toggle Button -->
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <!-- Bootstrap 5 JS and Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Function to toggle sub-lessons
+    function toggleSubList(id) {
+      const subList = document.getElementById(id);
+      if (subList.style.display === "block") {
+        subList.style.display = "none";
+      } else {
+        subList.style.display = "block";
+      }
+    }
+
+    // Function to reset the content area to the welcome message
+    function resetContent() {
+      const contentDisplay = document.getElementById("content-display");
+      contentDisplay.innerHTML = `
+        <div class="welcome-message">
+          <h3>Welcome to the Learning Page!</h3>
+          <p>Click on a lesson to start learning.</p>
+        </div>
+      `;
+    }
+
+    // Add event listener to the "Lessons" heading
+    document.getElementById("lessons-heading").addEventListener("click", resetContent);
+
+    // Function to handle content display
+    document.addEventListener("DOMContentLoaded", function () {
+      const contentDisplay = document.getElementById("content-display");
+      const lessonCards = document.querySelectorAll(".lesson-card[data-content]");
+
+      lessonCards.forEach((card) => {
+        card.addEventListener("click", function () {
+          const contentType = this.getAttribute("data-content");
+          const contentUrl = this.getAttribute("data-url");
+          const lessonTitle = this.querySelector("h5").textContent;
+
+          // Clear the content display area
+          contentDisplay.innerHTML = "";
+
+          // Display content based on the clicked item
+          if (contentType === "video" || contentType === "document") {
+            contentDisplay.innerHTML = `
+              <h3>${lessonTitle}</h3>
+              <iframe src="${contentUrl}" allowfullscreen></iframe>
+              <div class="notes-section">
+                <textarea id="notes-input" placeholder="Write your notes here..."></textarea>
+                <button onclick="saveNotes('${lessonTitle}')">Save Notes</button>
+                <button onclick="clearNotes('${lessonTitle}')">Clear Notes</button>
+                <div class="saved-notes">
+                  <h4>Saved Notes:</h4>
+                  <p id="saved-notes-display">${localStorage.getItem(lessonTitle) || "No notes saved yet."}</p>
+                </div>
+              </div>
+            `;
+          }
+        });
+      });
+    });
+
+    // Function to save notes to local storage
+    function saveNotes(lessonTitle) {
+      const notesInput = document.getElementById("notes-input").value;
+      const savedNotes = localStorage.getItem(lessonTitle) || ""; // Get existing notes
+      const updatedNotes = savedNotes + (savedNotes ? "\n\n" : "") + notesInput; // Append new notes
+      localStorage.setItem(lessonTitle, updatedNotes.trim()); // Save updated notes
+      document.getElementById("saved-notes-display").textContent = updatedNotes.trim(); // Update displayed notes
+    }
+
+    // Function to clear notes
+    function clearNotes(lessonTitle) {
+      localStorage.removeItem(lessonTitle); // Remove notes from local storage
+      document.getElementById("saved-notes-display").textContent = "No notes saved yet."; // Reset displayed notes
+    }
+
+    // Function to toggle sidebar on mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+
+    // Function to filter lessons based on search input
+    function filterLessons() {
+      const searchInput = document.getElementById("search-input").value.toLowerCase();
+      const lessonCards = document.querySelectorAll(".lesson-card h5");
+
+      lessonCards.forEach((card) => {
+        const lessonTitle = card.textContent.toLowerCase();
+        const lessonCard = card.parentElement;
+
+        if (lessonTitle.includes(searchInput)) {
+          lessonCard.style.display = "block";
+        } else {
+          lessonCard.style.display = "none";
+        }
+      });
+    }
+
+    // Function to simulate login
+    function login() {
+      localStorage.setItem("user", "loggedIn");
+      alert("You are now logged in!");
+    }
+
+    // Function to simulate logout
+    function logout() {
+      localStorage.removeItem("user");
+      alert("You are now logged out!");
+    }
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+</body>
+</html>
