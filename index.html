@@ -7,16 +7,18 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #fff;  /* White background for body */
             margin: 0;
             padding: 0;
+            color: #000;  /* Black text color */
         }
 
         .login-container {
             width: 300px;
             margin: 100px auto;
             padding: 20px;
-            background-color: white;
+            background-color: #fff;  /* White background for the form */
+            color: #000;  /* Black text inside the form */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -25,6 +27,7 @@
         label {
             display: block;
             margin-bottom: 8px;
+            color: #000;  /* Black color for labels */
         }
 
         input {
@@ -32,21 +35,23 @@
             padding: 8px;
             margin-bottom: 20px;
             border-radius: 4px;
-            border: 1px solid #ccc;
+            border: 1px solid #ccc;  /* Light grey border for inputs */
+            background-color: #f0f0f0;  /* Light grey background for input fields */
+            color: #000;  /* Black text in input fields */
         }
 
         button {
             width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #000;  /* Black button */
+            color: #fff;  /* White text on button */
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #444;  /* Darker black button when hovered */
         }
 
         #error-message {
@@ -70,25 +75,25 @@
 
     <script>
         document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault();  // Prevent form from submitting normally
+            event.preventDefault();  // Prevent form from submitting normally
 
-    // Hardcoded email and password
-    const correctEmail = "anil@mylearning.com";
-    const correctPassword = "password123";
+            // Hardcoded email and password
+            const correctEmail = "anil@mylearning.com";
+            const correctPassword = "password123";
 
-    // Get the entered values
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+            // Get the entered values
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
 
-    // Validate login
-    if (email === correctEmail && password === correctPassword) {
-        // If login is successful, redirect to another page (e.g., dashboard.html)
-        window.location.href = "page.html";
-    } else {
-        // Show error message if credentials are incorrect
-        document.getElementById("error-message").style.display = "block";
-    }
-});
-  </script>
+            // Validate login
+            if (email === correctEmail && password === correctPassword) {
+                // If login is successful, redirect to another page (e.g., dashboard.html)
+                window.location.href = "page.html";
+            } else {
+                // Show error message if credentials are incorrect
+                document.getElementById("error-message").style.display = "block";
+            }
+        });
+    </script>
 </body>
 </html>
