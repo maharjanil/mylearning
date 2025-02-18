@@ -14,6 +14,12 @@
       background-color: #f9fafb;
       margin: 0;
       padding: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #ffffff;
     }
 
     .sidebar {
@@ -22,6 +28,12 @@
       min-height: 100vh;
       padding: 30px 20px;
       box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode .sidebar {
+      background-color: #2d2d2d;
+      color: #ffffff;
     }
 
     .sidebar h3 {
@@ -30,6 +42,11 @@
       font-size: 24px;
       color: #111827;
       cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .sidebar h3 {
+      color: #ffffff;
     }
 
     .lesson-card {
@@ -42,9 +59,19 @@
       transition: all 0.3s ease;
     }
 
+    body.dark-mode .lesson-card {
+      background-color: #3d3d3d;
+      border-color: #555;
+      color: #ffffff;
+    }
+
     .lesson-card:hover {
       background-color: #f9fafb;
       border-color: #d1d5db;
+    }
+
+    body.dark-mode .lesson-card:hover {
+      background-color: #4d4d4d;
     }
 
     .lesson-card h5 {
@@ -52,6 +79,11 @@
       margin: 0;
       font-size: 16px;
       color: #111827;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .lesson-card h5 {
+      color: #ffffff;
     }
 
     .sub-lesson {
@@ -67,8 +99,17 @@
       margin-bottom: 5px;
     }
 
+    body.dark-mode .sub-lesson .lesson-card {
+      background-color: #4d4d4d;
+      border-color: #555;
+    }
+
     .sub-lesson .lesson-card:hover {
       background-color: #f3f4f6;
+    }
+
+    body.dark-mode .sub-lesson .lesson-card:hover {
+      background-color: #5d5d5d;
     }
 
     .content-area {
@@ -77,6 +118,12 @@
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
       margin: 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode .content-area {
+      background-color: #3d3d3d;
+      color: #ffffff;
     }
 
     .content-area h3 {
@@ -84,6 +131,11 @@
       color: #111827;
       margin-bottom: 20px;
       font-size: 28px;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .content-area h3 {
+      color: #ffffff;
     }
 
     iframe, video {
@@ -98,6 +150,11 @@
       text-align: center;
       padding: 50px;
       color: #111827;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .welcome-message {
+      color: #ffffff;
     }
 
     .welcome-message h3 {
@@ -109,6 +166,11 @@
     .welcome-message p {
       font-size: 18px;
       color: #6b7280;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .welcome-message p {
+      color: #a0a0a0;
     }
 
     .notes-section {
@@ -126,6 +188,13 @@
       resize: vertical;
       margin-bottom: 10px;
       background-color: #f9fafb;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    body.dark-mode .notes-section textarea {
+      background-color: #4d4d4d;
+      color: #ffffff;
+      border-color: #555;
     }
 
     .notes-section button {
@@ -139,8 +208,16 @@
       margin-right: 10px;
     }
 
+    body.dark-mode .notes-section button {
+      background-color: #374151;
+    }
+
     .notes-section button:hover {
       background-color: #374151;
+    }
+
+    body.dark-mode .notes-section button:hover {
+      background-color: #4d4d4d;
     }
 
     .saved-notes {
@@ -150,6 +227,13 @@
       border-radius: 8px;
       border: 1px solid #e5e7eb;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    body.dark-mode .saved-notes {
+      background-color: #4d4d4d;
+      border-color: #555;
+      color: #ffffff;
     }
 
     .saved-notes h4 {
@@ -157,22 +241,201 @@
       color: #111827;
       margin-bottom: 10px;
       font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .saved-notes h4 {
+      color: #ffffff;
     }
 
     .saved-notes p {
       font-size: 14px;
       color: #4b5563;
       white-space: pre-wrap;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .saved-notes p {
+      color: #a0a0a0;
+    }
+
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .sidebar-toggle {
+      background-color: #374151;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: #374151;
+    }
+
+    body.dark-mode .sidebar-toggle:hover {
+      background-color: #4d4d4d;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        transition: left 0.3s;
+        z-index: 999;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .sidebar-toggle {
+        display: block;
+      }
+
+      .content-area {
+        margin-left: 0;
+      }
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    body.dark-mode .search-bar input {
+      background-color: #4d4d4d;
+      color: #ffffff;
+      border-color: #555;
+    }
+
+    .auth-section {
+      margin-bottom: 20px;
+    }
+
+    .auth-section button {
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+    }
+
+    body.dark-mode .auth-section button {
+      background-color: #374151;
+    }
+
+    .auth-section button:hover {
+      background-color: #374151;
+    }
+
+    body.dark-mode .auth-section button:hover {
+      background-color: #4d4d4d;
+    }
+
+    .progress-tracker {
+      margin-top: 20px;
+    }
+
+    .progress-tracker h4 {
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 10px;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .progress-tracker h4 {
+      color: #ffffff;
+    }
+
+    .progress-tracker ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .progress-tracker li {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #4b5563;
+      transition: color 0.3s;
+    }
+
+    body.dark-mode .progress-tracker li {
+      color: #a0a0a0;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #111827;
+      color: #ffffff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .dark-mode-toggle {
+      background-color: #374151;
+    }
+
+    .dark-mode-toggle:hover {
+      background-color: #374151;
+    }
+
+    body.dark-mode .dark-mode-toggle:hover {
+      background-color: #4d4d4d;
     }
   </style>
 </head>
 <body>
   <div class="container-fluid">
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
     <div class="row">
       <!-- Left Side: Sidebar -->
-      <div class="col-md-3 sidebar">
+      <div class="col-md-3 sidebar" id="sidebar">
         <h3 id="lessons-heading">Lessons</h3>
         <hr>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search lessons..." oninput="filterLessons()">
+        </div>
+
+        <!-- Authentication Section -->
+        <div class="auth-section">
+          <button onclick="login()">Login</button>
+          <button onclick="logout()">Logout</button>
+        </div>
+
         <!-- Lesson 1 -->
         <div class="lesson-card" onclick="toggleSubList('sublist1')">
           <h5>Lesson 1: Mobile App Development</h5>
@@ -229,9 +492,9 @@
           <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/dFb9PYj63GA?si=rqOG5fAx8LaeNbM9">
             <h5>2.3: Dart Programming Complete Tutorial In Nepali</h5>
           </div>
-         </div>
+        </div>
 
-      <!-- Lesson 3 -->
+        <!-- Lesson 3 -->
         <div class="lesson-card" onclick="toggleSubList('sublist3')">
           <h5>Lesson 3: After Effects</h5>
         </div>
@@ -246,7 +509,7 @@
           <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/dFb9PYj63GA?si=rqOG5fAx8LaeNbM9">
             <h5>3.3: Dart Programming Complete Tutorial In Nepali</h5>
           </div>
-           <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/dFb9PYj63GA?si=rqOG5fAx8LaeNbM9">
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/dFb9PYj63GA?si=rqOG5fAx8LaeNbM9">
             <h5>3.4: Dart Programming Complete Tutorial In Nepali</h5>
           </div>
         </div>
@@ -263,6 +526,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Dark Mode Toggle Button -->
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
   <!-- Bootstrap 5 JS and Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -338,6 +604,46 @@
     function clearNotes(lessonTitle) {
       localStorage.removeItem(lessonTitle); // Remove notes from local storage
       document.getElementById("saved-notes-display").textContent = "No notes saved yet."; // Reset displayed notes
+    }
+
+    // Function to toggle sidebar on mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+
+    // Function to filter lessons based on search input
+    function filterLessons() {
+      const searchInput = document.getElementById("search-input").value.toLowerCase();
+      const lessonCards = document.querySelectorAll(".lesson-card h5");
+
+      lessonCards.forEach((card) => {
+        const lessonTitle = card.textContent.toLowerCase();
+        const lessonCard = card.parentElement;
+
+        if (lessonTitle.includes(searchInput)) {
+          lessonCard.style.display = "block";
+        } else {
+          lessonCard.style.display = "none";
+        }
+      });
+    }
+
+    // Function to simulate login
+    function login() {
+      localStorage.setItem("user", "loggedIn");
+      alert("You are now logged in!");
+    }
+
+    // Function to simulate logout
+    function logout() {
+      localStorage.removeItem("user");
+      alert("You are now logged out!");
+    }
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
     }
   </script>
 </body>
