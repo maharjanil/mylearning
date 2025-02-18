@@ -9,6 +9,27 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+  /* Add this to your CSS file */
+.logout-container {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+}
+
+.logout-btn {
+  padding: 5px 10px;
+  background-color: #000000; /* Red color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #f9fafb;
@@ -415,6 +436,10 @@
   </style>
 </head>
 <body>
+  <!-- Add this inside your body tag -->
+<div class="logout-container">
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
   <div class="container-fluid">
     <!-- Sidebar Toggle Button -->
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
@@ -645,6 +670,15 @@
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
     }
+    
+    function logout() {
+  // Clear any session storage, cookies, or local storage if necessary
+  // For example, if you're using session storage:
+  sessionStorage.clear(); // Or localStorage.clear()
+
+  // Redirect to the login page
+  window.location.href = 'index.html'; // Replace with the actual URL of your login page
+}
   </script>
 </body>
 </html>
