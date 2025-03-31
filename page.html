@@ -9,27 +9,26 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* Add this to your CSS file */
-    .logout-container {
-      position: fixed;
-      top: 8px;
-      right: 8px;
-      z-index: 1002;
-    }
+  /* Add this to your CSS file */
+.logout-container {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+}
 
-    .logout-btn {
-      padding: 5px 10px;
-      background-color: #000000; /* Red color */
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      border-radius: 3px;
-    }
+.logout-btn {
+  padding: 5px 10px;
+  background-color: #000000; /* Red color */
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 3px;
+}
 
-    .logout-btn:hover {
-      background-color: #d32f2f;
-    }
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
 
     body {
       font-family: 'Inter', sans-serif;
@@ -50,29 +49,7 @@
       min-height: 100vh;
       padding: 30px 20px;
       box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-
-    /* Sidebar visibility */
-    .sidebar {
-      transition: transform 0.3s ease, left 0.3s ease;
-    }
-
-    .sidebar.hidden {
-      transform: translateX(-100%);
-    }
-
-    @media (min-width: 769px) {
-      .sidebar.hidden {
-        transform: translateX(0);
-        left: -300px;
-        position: absolute;
-      }
-      
-      .sidebar:not(.hidden) + .col-md-9 {
-        margin-left: 25%;
-        transition: margin-left 0.3s ease;
-      }
+      transition: background-color 0.3s, color 0.3s;
     }
 
     body.dark-mode .sidebar {
@@ -308,14 +285,14 @@
       position: fixed;
       top: 20px;
       left: 20px;
-      z-index: 1001;
+      z-index: 1000;
       background-color: #111827;
       color: #ffffff;
       border: none;
       padding: 10px 15px;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s;
     }
 
     body.dark-mode .sidebar-toggle {
@@ -334,15 +311,14 @@
       .sidebar {
         position: fixed;
         top: 0;
-        left: 0;
+        left: -100%;
         width: 80%;
-        height: 100%;
-        z-index: 1000;
-        transition: transform 0.3s ease;
+        transition: left 0.3s;
+        z-index: 999;
       }
 
-      .sidebar.hidden {
-        transform: translateX(-100%);
+      .sidebar.active {
+        left: 0;
       }
 
       .sidebar-toggle {
@@ -350,9 +326,7 @@
       }
 
       .content-area {
-        margin-top: 60px;
         margin-left: 0;
-        padding: 15px;
       }
     }
 
@@ -446,7 +420,6 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s;
-      z-index: 1000;
     }
 
     body.dark-mode .dark-mode-toggle {
@@ -464,9 +437,9 @@
 </head>
 <body>
   <!-- Add this inside your body tag -->
-  <div class="logout-container">
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </div>
+<div class="logout-container">
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
   <div class="container-fluid">
     <!-- Sidebar Toggle Button -->
     <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
@@ -602,6 +575,18 @@
           <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/4Icj7fhPZbs?si=ZjbKnlYARFqsFYrt">
             <h5>4.4: WALK CYCLE IN 15 STEPS ▶️▶️▶️ TUTORIAL #12 (Intermediate level)</h5>
           </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/KIbsGJyqTjQ?si=eQVGyJqd6EITPtCv">
+            <h5>4.5: </h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/O0a_gu3lYXo?si=d3EO4ENXZeQ7aP-j">
+            <h5>4.6: </h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/UaWq3cEzrKc?si=ORTePfGOi9GikoG9">
+            <h5>4.7: </h5>
+          </div>
+          <div class="lesson-card" data-content="video" data-url="https://www.youtube.com/embed/1gZrLUZOSME?si=Dl1nMNyUp5ehRqnP">
+            <h5>4.8: </h5>
+          </div>
         </div>
       </div>
 
@@ -696,40 +681,11 @@
       document.getElementById("saved-notes-display").textContent = "No notes saved yet."; // Reset displayed notes
     }
 
-    // Function to toggle sidebar visibility
+    // Function to toggle sidebar on mobile
     function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('hidden');
-      
-      // Update the toggle button icon
-      const toggleBtn = document.querySelector('.sidebar-toggle');
-      if (sidebar.classList.contains('hidden')) {
-        toggleBtn.textContent = '☰';
-      } else {
-        toggleBtn.textContent = '✕';
-      }
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
     }
-
-    // Close sidebar when clicking outside on mobile
-    document.addEventListener('click', function(event) {
-      const sidebar = document.getElementById('sidebar');
-      const toggleBtn = document.querySelector('.sidebar-toggle');
-      
-      if (window.innerWidth <= 768 && 
-          !sidebar.contains(event.target) && 
-          event.target !== toggleBtn &&
-          !sidebar.classList.contains('hidden')) {
-        sidebar.classList.add('hidden');
-        toggleBtn.textContent = '☰';
-      }
-    });
-
-    // Close sidebar with ESC key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && !document.getElementById('sidebar').classList.contains('hidden')) {
-        toggleSidebar();
-      }
-    });
 
     // Function to filter lessons based on search input
     function filterLessons() {
@@ -754,35 +710,25 @@
       alert("You are now logged in!");
     }
 
-    // Function to logout
+    // Function to simulate logout
     function logout() {
-      localStorage.clear();
-      sessionStorage.clear();
-      window.location.href = 'index.html';
+      localStorage.removeItem("user");
+      alert("You are now logged out!");
     }
 
     // Function to toggle dark mode
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
-      // Save preference
-      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
     }
+    
+    function logout() {
+  // Clear any session storage, cookies, or local storage if necessary
+  // For example, if you're using session storage:
+  sessionStorage.clear(); // Or localStorage.clear()
 
-    // Check for saved dark mode preference
-    if (localStorage.getItem('darkMode') === 'true') {
-      document.body.classList.add('dark-mode');
-    }
-
-    // Check for saved sidebar state
-    if (localStorage.getItem('sidebarHidden') === 'true') {
-      document.getElementById('sidebar').classList.add('hidden');
-      document.querySelector('.sidebar-toggle').textContent = '☰';
-    }
-
-    // Update sidebar state when toggled
-    document.getElementById('sidebar').addEventListener('transitionend', function() {
-      localStorage.setItem('sidebarHidden', this.classList.contains('hidden'));
-    });
+  // Redirect to the login page
+  window.location.href = 'index.html'; // Replace with the actual URL of your login page
+}
   </script>
 </body>
 </html>
